@@ -13,7 +13,7 @@
     <!-- Fixed Header that follows on scroll -->
     <header class="top-bar fixed-header">
         <div class="header-left">
-            <a href="#" class="logo-link">
+            <a href="index.html" class="logo-link">
                 <img src="oakandeagle icon.png" alt="Oak & Eagle Realty" class="logo-image">
             </a>
             <span class="company-name">Oak and Eagle Realty</span>
@@ -26,7 +26,8 @@
                 <span></span>
             </button>
             <div class="hamburger-menu" id="hamburgerMenu">
-                <a href="#" class="menu-item">About Us</a>
+                <a href="index.html" class="menu-item">Home</a>
+                <a href="about.html" class="menu-item">About Us</a>
                 <a href="#" class="menu-item">Our Services</a>
                 <a href="#" class="menu-item">Properties</a>
                 <a href="#" class="menu-item">Contact</a>
@@ -148,10 +149,15 @@
 
             <!-- Marketing Overlay -->
             <div class="marketing-overlay">
-                <h1 class="main-headline">Sell Your Land Fast for Cash</h1>
-                <div class="scroll-prompt">
-                    <span class="scroll-arrow">↓</span>
-                    <span>Scroll to Explore</span>
+                <video class="background-video" autoplay muted loop playsinline preload="auto" webkit-playsinline="true">
+                    <source src="backvid.mp4" type="video/mp4">
+                </video>
+                <div class="overlay-content">
+                    <h1 class="main-headline">Sell Your Land Fast for Cash</h1>
+                    <div class="scroll-prompt">
+                        <span class="scroll-arrow">↓</span>
+                        <span>Scroll to Explore</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,6 +197,21 @@
     <!-- Text Section Below Carousel -->
     <div class="text-section">
         <p class="large-text">No commissions, no repairs, no waiting. We buy land and properties in any condition with fast closing in as little as 7 days. Get your fair cash offer today.</p>
+        <button class="get-offer-btn">Get Offer</button>
+        <div class="stats-section">
+            <div class="stat-item">
+                <div class="stat-value">7 Days</div>
+                <div class="stat-label">Average Closing</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1000+</div>
+                <div class="stat-label">Satisfied Sellers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">98%</div>
+                <div class="stat-label">Customer Satisfaction</div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>

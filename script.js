@@ -1,11 +1,17 @@
 // Smooth scroll behavior and fade effects
 document.addEventListener('DOMContentLoaded', function() {
-    // Logo link scroll to top
+    // Logo link - navigate to homepage or scroll to top if already on homepage
     const logoLink = document.querySelector('.logo-link');
     if (logoLink) {
         logoLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const currentPage = window.location.pathname;
+            const isHomePage = currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '';
+            
+            if (isHomePage) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            // Otherwise, let the link navigate normally to index.html
         });
     }
     const marketingOverlay = document.querySelector('.marketing-overlay');
@@ -102,20 +108,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Hamburger menu toggle
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    
-    if (hamburgerBtn && hamburgerMenu) {
+    // Hamburger menu toggle - moved outside DOMContentLoaded check
+    function initHamburgerMenu() {
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        
+        if (!hamburgerBtn || !hamburgerMenu) {
+            console.log('Hamburger menu elements not found');
+            return;
+        }
+        
+        console.log('Hamburger menu initialized');
+        
         hamburgerBtn.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
+            console.log('Hamburger button clicked');
             hamburgerBtn.classList.toggle('active');
             hamburgerMenu.classList.toggle('active');
+            console.log('Menu active:', hamburgerMenu.classList.contains('active'));
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!hamburgerBtn.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+            if (hamburgerBtn && hamburgerMenu && 
+                !hamburgerBtn.contains(e.target) && 
+                !hamburgerMenu.contains(e.target) &&
+                hamburgerMenu.classList.contains('active')) {
                 hamburgerBtn.classList.remove('active');
                 hamburgerMenu.classList.remove('active');
             }
@@ -125,11 +144,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const menuItems = hamburgerMenu.querySelectorAll('.menu-item');
         menuItems.forEach(item => {
             item.addEventListener('click', function() {
-                hamburgerBtn.classList.remove('active');
-                hamburgerMenu.classList.remove('active');
+                if (hamburgerBtn && hamburgerMenu) {
+                    hamburgerBtn.classList.remove('active');
+                    hamburgerMenu.classList.remove('active');
+                }
             });
         });
     }
+    
+    // Initialize hamburger menu
+    initHamburgerMenu();
     
     // Carousel functionality
     const carouselTrack = document.getElementById('carouselTrack');

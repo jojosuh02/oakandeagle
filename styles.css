@@ -50,6 +50,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
+    position: relative;
 }
 
 .logo-image {
@@ -176,7 +177,8 @@ body {
     width: 30px;
     height: 30px;
     padding: 0;
-    z-index: 1001;
+    z-index: 1002;
+    position: relative;
 }
 
 .hamburger-menu-btn span {
@@ -203,8 +205,8 @@ body {
 /* Hamburger Menu Dropdown */
 .hamburger-menu {
     position: absolute;
-    top: 100%;
-    right: 30px;
+    top: calc(100% + 10px);
+    right: 0;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -212,19 +214,20 @@ body {
     border-radius: 8px;
     min-width: 200px;
     padding: 10px 0;
-    margin-top: 10px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-    z-index: 1000;
+    z-index: 1001;
+    pointer-events: none;
 }
 
 .hamburger-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
 }
 
 .hamburger-menu .menu-item {
@@ -441,12 +444,40 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 40vh;
-    background: #2d7a3d;
     z-index: 5;
     pointer-events: none;
     opacity: 1 !important;
     will-change: transform;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    will-change: transform;
+}
+
+.overlay-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 40vh;
+    width: 100%;
+    height: 100%;
 }
 
 .main-headline {
@@ -653,10 +684,11 @@ html {
 
 /* Text Section Below Carousel */
 .text-section {
-    padding: 80px 40px;
+    padding: 40px 40px 80px 40px;
     background: #ffffff;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     min-height: 50vh;
 }
@@ -669,17 +701,107 @@ html {
     line-height: 1.4;
     max-width: 1200px;
     margin: 0;
+    margin-bottom: 40px;
+}
+
+.get-offer-btn {
+    background: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    padding: 20px 60px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.get-offer-btn:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+}
+
+.get-offer-btn:active {
+    transform: translateY(0);
+}
+
+.stats-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .stats-section {
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .stat-value {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .stats-section {
+        gap: 40px;
+    }
 }
 
 @media (max-width: 768px) {
     .large-text {
         font-size: 1.8rem;
     }
+    
+    .get-offer-btn {
+        padding: 16px 40px;
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 1024px) {
     .large-text {
         font-size: 2.2rem;
+    }
+    
+    .get-offer-btn {
+        padding: 18px 50px;
+        font-size: 20px;
     }
 }
 
