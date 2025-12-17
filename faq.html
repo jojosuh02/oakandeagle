@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Oak & Eagle Realty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-page {
+            padding-top: 100px;
+            background: #ffffff;
+        }
+        
+        .faq-hero {
+            text-align: center;
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .faq-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+        }
+        
+        .faq-section {
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f9f9f9;
+        }
+        
+        .faq-question h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            flex: 1;
+        }
+        
+        .faq-toggle {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+        
+        .faq-toggle:hover {
+            background: #333333;
+        }
+        
+        .faq-toggle.active {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 30px;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 30px 20px 30px;
+        }
+        
+        .faq-answer p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            margin-top: 60px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="top-bar fixed-header">
+        <div class="header-left">
+            <a href="index.html" class="logo-link">
+                <img src="oakandeagle icon.png" alt="Oak & Eagle Realty" class="logo-image">
+            </a>
+            <span class="company-name">Oak and Eagle Realty</span>
+        </div>
+        <div class="header-right">
+            <a href="contact.html" class="get-started-btn">Get Started</a>
+            <button class="hamburger-menu-btn" id="hamburgerBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <a href="index.html" class="menu-item">Home</a>
+                <a href="about.html" class="menu-item">About Us</a>
+                <a href="services.html" class="menu-item">Our Services</a>
+                <a href="contact.html" class="menu-item">Contact</a>
+                <a href="faq.html" class="menu-item">FAQ</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="faq-page">
+        <div class="faq-hero">
+            <h1>Frequently Asked Questions</h1>
+        </div>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>Who is Oak & Eagle?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>Oak & Eagle LLC is a land buyer in North Carolina & surrounding states. We buy, sell, and list land in all different shapes & sizes.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>Does O&E buy anywhere?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! Although North Carolina is our favorite state, we'll buy just about anywhere that makes sense. Our offers are always completely transparent with the breakdown behind the math out in plain view.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>Does the land have to be cleared?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>Nope! The land can have trees or properties on it, we look at every possible exit strategy before making you an offer to ensure we're giving you the highest amount possible.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>What if I owe money on the land?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>Doesn't matter. We can work around the bank, do land contracts, or completely pay off any liens prior to ownership transfers. We're creative!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>How long does the process take?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>We can close in as little as 7 days! The timeline depends on your needs - we can work quickly if you need to sell fast, or take more time if you need flexibility.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>Are there any fees or commissions?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>No! We cover all closing costs and there are no realtor fees or commissions. You receive the full agreed-upon amount with no surprise deductions.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>Do I need to make repairs or clean up the property?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>Not at all! We buy land in any condition. Whether it's raw land, has structures, or needs cleanup, we'll make you a fair offer as-is.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>How do you determine the offer amount?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>We analyze market data, location, size, zoning, and potential uses for the land. Our offers are data-driven and transparent - we'll show you exactly how we arrived at the number.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>What types of land do you buy?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>We buy all types of vacant land: residential lots, rural land, unimproved parcels, inherited land, tax-burdened properties, and land without road access or utilities. If it's vacant land, we're interested!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h2>Is there any obligation after I submit my property information?</h2>
+                    <button class="faq-toggle">+</button>
+                </div>
+                <div class="faq-answer">
+                    <p>No obligation at all! You can review our offer and decide if it works for you. There's no pressure - we want you to feel comfortable with the process.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Get Started Today</h2>
+            <p>If you're looking to sell vacant land quickly and without hassle, we can help.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-button">GET OFFER</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const faqToggle = faqItem.querySelector('.faq-toggle');
+            
+            const isActive = faqAnswer.classList.contains('active');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-answer').forEach(answer => {
+                if (answer !== faqAnswer) {
+                    answer.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.faq-toggle').forEach(toggle => {
+                if (toggle !== faqToggle) {
+                    toggle.classList.remove('active');
+                    toggle.textContent = '+';
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                faqAnswer.classList.remove('active');
+                faqToggle.classList.remove('active');
+                faqToggle.textContent = '+';
+            } else {
+                faqAnswer.classList.add('active');
+                faqToggle.classList.add('active');
+                faqToggle.textContent = '×';
+            }
+        }
+    </script>
+</body>
+</html>
+

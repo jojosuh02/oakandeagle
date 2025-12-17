@@ -62,6 +62,7 @@ body {
     background: transparent;
     transform: scale(1);
     transform-origin: left center;
+    opacity: 1 !important;
 }
 
 /* Fixed Header that follows on scroll */
@@ -115,6 +116,7 @@ body {
     font-weight: 600;
     color: #1a1a1a;
     white-space: nowrap;
+    opacity: 1 !important;
 }
 
 .ets-text {
@@ -159,6 +161,8 @@ body {
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
     margin-right: 10px;
+    display: inline-block;
+    text-decoration: none;
 }
 
 .get-started-btn:hover {
@@ -718,6 +722,8 @@ html {
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    text-decoration: none;
 }
 
 .get-offer-btn:hover {

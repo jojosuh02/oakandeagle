@@ -1,3 +1,58 @@
+// Hamburger menu initialization function (available globally)
+function initHamburgerMenu() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    
+    if (!hamburgerBtn || !hamburgerMenu) {
+        return;
+    }
+    
+    // Check if already initialized
+    if (hamburgerBtn.dataset.initialized === 'true') {
+        return;
+    }
+    
+    hamburgerBtn.dataset.initialized = 'true';
+    
+    hamburgerBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        hamburgerBtn.classList.toggle('active');
+        hamburgerMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside (use a single listener)
+    let clickOutsideHandler = function(e) {
+        if (hamburgerBtn && hamburgerMenu && 
+            !hamburgerBtn.contains(e.target) && 
+            !hamburgerMenu.contains(e.target) &&
+            hamburgerMenu.classList.contains('active')) {
+            hamburgerBtn.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        }
+    };
+    document.addEventListener('click', clickOutsideHandler);
+    
+    // Close menu when clicking a menu item
+    const menuItems = hamburgerMenu.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        });
+    });
+}
+
+// Initialize hamburger menu when DOM is ready
+function setupHamburgerMenu() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+    } else {
+        initHamburgerMenu();
+    }
+}
+setupHamburgerMenu();
+
 // Smooth scroll behavior and fade effects
 document.addEventListener('DOMContentLoaded', function() {
     // Logo link - navigate to homepage or scroll to top if already on homepage
@@ -20,26 +75,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const fixedHeader = document.querySelector('.fixed-header');
     
     // Scroll overlay up as user scrolls down (no fading)
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Move overlay up as user scrolls (parallax effect)
-        const translateY = -scrollTop;
-        marketingOverlay.style.transform = `translateY(${translateY}px)`;
-        marketingOverlay.style.opacity = 1; // Keep opacity at 1, no fading
-        
-        // Update header on scroll
-        if (scrollTop > 100) {
-            fixedHeader.classList.add('scrolled');
-        } else {
-            fixedHeader.classList.remove('scrolled');
-        }
-    });
+    if (marketingOverlay) {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Move overlay up as user scrolls (parallax effect)
+            const translateY = -scrollTop;
+            marketingOverlay.style.transform = `translateY(${translateY}px)`;
+            marketingOverlay.style.opacity = 1; // Keep opacity at 1, no fading
+        });
+    }
+    
+    // Update header on scroll
+    if (fixedHeader) {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 100) {
+                fixedHeader.classList.add('scrolled');
+            } else {
+                fixedHeader.classList.remove('scrolled');
+            }
+        });
+    }
     
     // Smooth scroll to content when clicking scroll prompt
-    scrollPrompt.addEventListener('click', function() {
-        scrollContent.scrollIntoView({ behavior: 'smooth' });
-    });
+    if (scrollPrompt && scrollContent) {
+        scrollPrompt.addEventListener('click', function() {
+            scrollContent.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
     
     // Remove parallax effect to prevent glitching
     // The marketing overlay is now fixed and should not move
@@ -108,53 +172,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Hamburger menu toggle - moved outside DOMContentLoaded check
-    function initHamburgerMenu() {
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const hamburgerMenu = document.getElementById('hamburgerMenu');
-        
-        if (!hamburgerBtn || !hamburgerMenu) {
-            console.log('Hamburger menu elements not found');
-            return;
-        }
-        
-        console.log('Hamburger menu initialized');
-        
-        hamburgerBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Hamburger button clicked');
-            hamburgerBtn.classList.toggle('active');
-            hamburgerMenu.classList.toggle('active');
-            console.log('Menu active:', hamburgerMenu.classList.contains('active'));
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (hamburgerBtn && hamburgerMenu && 
-                !hamburgerBtn.contains(e.target) && 
-                !hamburgerMenu.contains(e.target) &&
-                hamburgerMenu.classList.contains('active')) {
-                hamburgerBtn.classList.remove('active');
-                hamburgerMenu.classList.remove('active');
-            }
-        });
-        
-        // Close menu when clicking a menu item
-        const menuItems = hamburgerMenu.querySelectorAll('.menu-item');
-        menuItems.forEach(item => {
-            item.addEventListener('click', function() {
-                if (hamburgerBtn && hamburgerMenu) {
-                    hamburgerBtn.classList.remove('active');
-                    hamburgerMenu.classList.remove('active');
-                }
-            });
-        });
-    }
-    
-    // Initialize hamburger menu
+    // Initialize hamburger menu (works on all pages)
     initHamburgerMenu();
     
+    // Carousel functionality (only on homepage)
     // Carousel functionality
     const carouselTrack = document.getElementById('carouselTrack');
     const carouselButtons = document.querySelectorAll('.carousel-btn');
@@ -206,6 +227,72 @@ document.addEventListener('DOMContentLoaded', function() {
                 startAutoScroll();
             });
         }
+    }
+    
+    // Vertical carousel for "What We Do" section
+    const whatWeDoCarousel = document.getElementById('whatWeDoCarousel');
+    const whatWeDoTrack = document.getElementById('whatWeDoTrack');
+    const arrowUp = document.getElementById('carouselArrowUp');
+    const arrowDown = document.getElementById('carouselArrowDown');
+    
+    if (whatWeDoCarousel && whatWeDoTrack && arrowUp && arrowDown) {
+        let currentSlide = 0;
+        const slides = whatWeDoTrack.querySelectorAll('.carousel-slide-vertical');
+        const totalSlides = slides.length;
+        
+        // Function to move to specific slide
+        function goToSlideVertical(index) {
+            if (index < 0) index = 0;
+            if (index >= totalSlides) index = totalSlides - 1;
+            
+            currentSlide = index;
+            whatWeDoTrack.style.transform = `translateY(-${currentSlide * 500}px)`;
+            
+            // Update arrow states
+            arrowUp.disabled = currentSlide === 0;
+            arrowDown.disabled = currentSlide === totalSlides - 1;
+        }
+        
+        // Arrow button handlers
+        arrowUp.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                goToSlideVertical(currentSlide - 1);
+            }
+        });
+        
+        arrowDown.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) {
+                goToSlideVertical(currentSlide + 1);
+            }
+        });
+        
+        // Initialize arrow states
+        arrowUp.disabled = currentSlide === 0;
+        arrowDown.disabled = currentSlide === totalSlides - 1;
+    }
+    
+    // Fade-in animation for sections on scroll (services page)
+    // Only target sections with the fade-section class
+    const articleSections = document.querySelectorAll('.article-section.fade-section');
+    const ctaSection = document.querySelector('.cta-section');
+    
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    articleSections.forEach(section => {
+        fadeInObserver.observe(section);
+    });
+    
+    if (ctaSection) {
+        fadeInObserver.observe(ctaSection);
     }
 });
 
