@@ -20,6 +20,14 @@
             background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
         }
         
+        .about-hero-logo {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 40px;
+            display: block;
+        }
+        
         .about-hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
@@ -33,6 +41,98 @@
             line-height: 1.8;
             max-width: 900px;
             margin: 0 auto;
+        }
+        
+        .land-carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .land-carousel-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .land-carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+            will-change: transform;
+        }
+        
+        .land-carousel-slide {
+            min-width: 100%;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .land-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #1a1a1a;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .land-carousel-arrow:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .land-carousel-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        
+        .land-carousel-arrow-left {
+            left: 20px;
+        }
+        
+        .land-carousel-arrow-right {
+            right: 20px;
+        }
+        
+        .land-carousel-arrow svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .land-carousel-slide {
+                height: 300px;
+            }
+            
+            .land-carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .land-carousel-arrow-left {
+                left: 10px;
+            }
+            
+            .land-carousel-arrow-right {
+                right: 10px;
+            }
         }
         
         .about-section {
@@ -305,19 +405,35 @@
 
     <div class="about-page">
         <div class="about-hero">
+            <img src="oakandeagle icon.png" alt="Oak & Eagle Realty Logo" class="about-hero-logo" />
             <h1>Powering Real Estate Success Since 2018</h1>
             <p>At Oak & Eagle Realty, we understand the challenges property owners face when trying to sell their land or properties. That's why we've dedicated ourselves to providing fast, fair cash offers and hassle-free closings that deliver real results.</p>
-        </div>
-
-        <div class="about-section">
-            <h2>Industry Expertise</h2>
-            <p>Over 7 years of experience in real estate, helping hundreds of property owners sell their land and properties nationwide.</p>
-
-            <h2>Proven Results</h2>
-            <p>Our sellers receive fair market value offers and close in as little as 7 days with zero fees or commissions.</p>
-
-            <h2>Dedicated Support</h2>
-            <p>Dedicated support and transparent communication throughout the entire selling process.</p>
+            <div class="land-carousel-container">
+                <div class="land-carousel-wrapper">
+                    <div class="land-carousel-track" id="landCarouselTrack">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80" alt="Beautiful land and property landscape" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80" alt="Scenic land property" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=80" alt="Rolling hills and land" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&q=80" alt="Mountain landscape property" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80" alt="Vast land property" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80" alt="Rural land property" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&q=80" alt="Natural land landscape" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1506260408121-e353d10b87c7?w=1200&q=80" alt="Countryside land" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&q=80" alt="Open field property" class="land-carousel-slide" />
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80" alt="Expansive land property" class="land-carousel-slide" />
+                    </div>
+                </div>
+                <button class="land-carousel-arrow land-carousel-arrow-left" id="landCarouselArrowLeft" aria-label="Previous image">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="land-carousel-arrow land-carousel-arrow-right" id="landCarouselArrowRight" aria-label="Next image">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <div class="about-section">
@@ -441,6 +557,83 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Land carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselTrack = document.getElementById('landCarouselTrack');
+            const arrowLeft = document.getElementById('landCarouselArrowLeft');
+            const arrowRight = document.getElementById('landCarouselArrowRight');
+            
+            if (!carouselTrack || !arrowLeft || !arrowRight) {
+                return;
+            }
+            
+            let currentIndex = 0;
+            const totalSlides = 10;
+            let autoScrollInterval;
+            let isPaused = false;
+            
+            // Function to move carousel to specific slide
+            function goToSlide(index) {
+                currentIndex = index;
+                carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            // Function to go to next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                goToSlide(currentIndex);
+            }
+            
+            // Function to go to previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                goToSlide(currentIndex);
+            }
+            
+            // Arrow click handlers
+            arrowLeft.addEventListener('click', function() {
+                prevSlide();
+                resetAutoScroll();
+            });
+            
+            arrowRight.addEventListener('click', function() {
+                nextSlide();
+                resetAutoScroll();
+            });
+            
+            // Auto-scroll function
+            function startAutoScroll() {
+                if (isPaused) return;
+                autoScrollInterval = setInterval(() => {
+                    nextSlide();
+                }, 4000); // Change slide every 4 seconds
+            }
+            
+            // Reset auto-scroll timer
+            function resetAutoScroll() {
+                clearInterval(autoScrollInterval);
+                startAutoScroll();
+            }
+            
+            // Pause auto-scroll on hover
+            const carouselContainer = document.querySelector('.land-carousel-container');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', () => {
+                    isPaused = true;
+                    clearInterval(autoScrollInterval);
+                });
+                
+                carouselContainer.addEventListener('mouseleave', () => {
+                    isPaused = false;
+                    startAutoScroll();
+                });
+            }
+            
+            // Start auto-scroll when page loads
+            startAutoScroll();
+        });
+    </script>
 </body>
 </html>
 
