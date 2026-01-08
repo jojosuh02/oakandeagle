@@ -628,10 +628,10 @@ html {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(224, 224, 224, 0.8);
     color: #1a1a1a;
-    padding: 12px 24px;
-    border-radius: 0;
+    padding: 16px 32px;
+    border-radius: 12px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -672,6 +672,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .carousel-image-placeholder {
@@ -684,6 +685,102 @@ html {
     font-size: 24px;
     color: #999;
     font-weight: 500;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
+    padding: 60px 40px 40px 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.carousel-text {
+    max-width: 1000px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.carousel-text h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+}
+
+.carousel-text p {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.6;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    font-style: italic;
+}
+
+@media (max-width: 1024px) {
+    .carousel-text h3 {
+        font-size: 2rem;
+    }
+    
+    .carousel-text p {
+        font-size: 1.1rem;
+    }
+    
+    .carousel-overlay {
+        padding: 50px 30px 30px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-slide {
+        height: 600px;
+    }
+    
+    .carousel-text h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .carousel-text p {
+        font-size: 1rem;
+    }
+    
+    .carousel-overlay {
+        padding: 40px 20px 20px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide {
+        height: 500px;
+    }
+    
+    .carousel-text h3 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+    
+    .carousel-text p {
+        font-size: 0.9rem;
+    }
+    
+    .carousel-overlay {
+        padding: 30px 15px 15px 15px;
+    }
 }
 
 /* Text Section Below Carousel */
