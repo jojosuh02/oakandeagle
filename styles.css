@@ -184,6 +184,8 @@ body {
     padding: 0;
     z-index: 1002;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .hamburger-menu-btn span {
@@ -226,6 +228,7 @@ body {
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     z-index: 1001;
     pointer-events: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger-menu.active {
@@ -235,21 +238,27 @@ body {
     pointer-events: auto !important;
 }
 
-.hamburger-menu .menu-item {
-    display: block;
-    padding: 12px 20px;
-    color: #1a1a1a;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background 0.2s ease;
-    border: none;
-    width: 100%;
-    text-align: left;
-}
-
-.hamburger-menu .menu-item:hover {
-    background: #f5f5f5;
-}
+    .hamburger-menu .menu-item {
+        display: block;
+        padding: 12px 20px;
+        color: #1a1a1a;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.2s ease;
+        border: none;
+        width: 100%;
+        text-align: left;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+        touch-action: manipulation;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hamburger-menu .menu-item:hover,
+    .hamburger-menu .menu-item:active {
+        background: #f5f5f5;
+    }
 
 /* Main Content Area */
 .main-content {
@@ -935,6 +944,35 @@ html {
         padding: 6px 16px;
         font-size: 12px;
         margin-right: 5px;
+    }
+    
+    /* Ensure hamburger menu is visible and clickable on mobile */
+    .hamburger-menu-btn {
+        display: flex !important;
+        z-index: 1003;
+        position: relative;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+        width: 35px;
+        height: 35px;
+    }
+    
+    .hamburger-menu {
+        z-index: 1002;
+        min-width: 180px;
+        max-width: 90vw;
+        right: 0;
+        top: calc(100% + 5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .header-right {
+        z-index: 1001;
+        position: relative;
+    }
+    
+    .hamburger-menu .menu-item {
+        padding: 15px 20px;
+        font-size: 15px;
     }
     
     /* Carousel buttons - stack vertically on mobile */

@@ -14,11 +14,36 @@ function initHamburgerMenu() {
     
     hamburgerBtn.dataset.initialized = 'true';
     
-    hamburgerBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // Use both click and touchstart for better mobile support
+    let isTouching = false;
+    
+    function toggleMenu(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         hamburgerBtn.classList.toggle('active');
         hamburgerMenu.classList.toggle('active');
+    }
+    
+    hamburgerBtn.addEventListener('touchstart', function(e) {
+        isTouching = true;
+    });
+    
+    hamburgerBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        toggleMenu(e);
+        // Prevent click event from firing after touchend
+        setTimeout(() => {
+            isTouching = false;
+        }, 300);
+    });
+    
+    hamburgerBtn.addEventListener('click', function(e) {
+        // Only fire if this wasn't triggered by a touch event
+        if (!isTouching) {
+            toggleMenu(e);
+        }
     });
     
     // Close menu when clicking outside (use a single listener)
@@ -32,6 +57,7 @@ function initHamburgerMenu() {
         }
     };
     document.addEventListener('click', clickOutsideHandler);
+    document.addEventListener('touchend', clickOutsideHandler);
     
     // Close menu when clicking a menu item
     const menuItems = hamburgerMenu.querySelectorAll('.menu-item');
