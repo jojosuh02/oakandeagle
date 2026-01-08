@@ -1558,24 +1558,36 @@ html {
     .content-card p {
         font-size: 1rem !important;
         text-align: center !important;
-        margin: 0 auto 15px auto;
+        margin: 20px auto 15px auto !important;
         max-width: 100%;
+        width: 100%;
+    }
+    
+    .content-card p:last-child {
+        margin-bottom: 0 !important;
     }
     
     .content-card ul {
-        margin: 15px auto;
-        padding-left: 20px;
+        margin: 20px auto !important;
+        padding-left: 0 !important;
         display: block;
-        text-align: left;
+        text-align: center !important;
         max-width: 100%;
         width: 100%;
         box-sizing: border-box;
+        list-style: none !important;
     }
     
     .content-card li {
         font-size: 1rem !important;
-        text-align: left;
-        margin: 8px 0;
+        text-align: center !important;
+        margin: 12px 0 !important;
+        padding: 0 !important;
+        position: relative;
+    }
+    
+    .content-card li:before {
+        display: none !important;
     }
     
     .carousel-container-vertical {
@@ -1640,8 +1652,10 @@ html {
         width: 100% !important;
         max-width: 100% !important;
         padding: 0 !important;
-        margin: 20px 0 !important;
+        margin: 30px auto !important;
         display: block !important;
+        text-align: center !important;
+        list-style: none !important;
     }
     
     .process-item {
@@ -1649,22 +1663,31 @@ html {
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
-        margin: 25px 0 !important;
+        margin: 35px 0 !important;
         padding: 0 !important;
         width: 100% !important;
         box-sizing: border-box;
+        list-style: none !important;
+        position: relative !important;
+    }
+    
+    .process-item::before {
+        display: none !important;
     }
     
     .process-item-content {
         text-align: center !important;
         width: 100% !important;
         max-width: 100% !important;
+        margin-left: 0 !important;
     }
     
     .process-item h4 {
         font-size: 1.2rem !important;
         text-align: center !important;
         margin: 0 auto 10px auto !important;
+        width: 100%;
+        white-space: normal !important;
     }
     
     .process-item p {
@@ -1672,26 +1695,97 @@ html {
         text-align: center !important;
         margin: 0 auto !important;
         max-width: 100% !important;
+        width: 100%;
     }
     
     .step-number {
-        margin: 0 auto 15px auto !important;
-        display: block;
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        margin: 0 auto 20px auto !important;
+        display: block !important;
+        width: auto !important;
+        margin-right: 0 !important;
+        font-size: 2rem !important;
+    }
+    
+    /* CTA Section Mobile */
+    .cta-section {
+        padding: 50px 20px !important;
+        text-align: center !important;
+        margin: 0 auto;
+    }
+    
+    .cta-section h2 {
+        text-align: center !important;
+        margin: 0 auto 20px auto !important;
+        width: 100%;
+    }
+    
+    .cta-section p {
+        text-align: center !important;
+        margin: 0 auto 30px auto !important;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .cta-buttons {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .cta-button {
+        margin: 0 auto !important;
+        text-align: center !important;
     }
     
     .benefits-list {
         width: 100% !important;
         max-width: 100% !important;
         padding: 0 !important;
-        margin: 20px 0 !important;
+        margin: 20px auto !important;
         display: block !important;
+        text-align: center !important;
+        list-style: none !important;
     }
     
     .benefit-item {
         text-align: center !important;
-        margin: 12px 0 !important;
-        font-size: 1rem !important;
+        margin: 15px 0 !important;
+        font-size: 1.1rem !important;
         width: 100% !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+    
+    /* Ensure all sections have consistent spacing */
+    .services-hero {
+        padding: 40px 20px !important;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .services-hero .divider-line {
+        margin: 0 auto 30px auto !important;
+        max-width: 90%;
+        width: 100%;
+    }
+    
+    /* Ensure article sections have consistent spacing */
+    .article-section {
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    
+    /* Fix spacing between sections */
+    .services-hero + .services-hero {
+        margin-top: 0 !important;
+        padding-top: 40px !important;
     }
     
     /* Ensure hero content is centered */
