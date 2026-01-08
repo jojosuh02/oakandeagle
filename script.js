@@ -14,9 +14,7 @@ function initHamburgerMenu() {
     
     hamburgerBtn.dataset.initialized = 'true';
     
-    // Use both click and touchstart for better mobile support
-    let isTouching = false;
-    
+    // Simple toggle function
     function toggleMenu(e) {
         if (e) {
             e.preventDefault();
@@ -26,43 +24,58 @@ function initHamburgerMenu() {
         hamburgerMenu.classList.toggle('active');
     }
     
+    // Use a single event handler that works for both touch and click
+    let touchStartTime = 0;
+    let touchStartY = 0;
+    
     hamburgerBtn.addEventListener('touchstart', function(e) {
-        isTouching = true;
-    });
+        touchStartTime = Date.now();
+        touchStartY = e.touches[0].clientY;
+        e.stopPropagation();
+    }, { passive: true });
     
     hamburgerBtn.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        toggleMenu(e);
-        // Prevent click event from firing after touchend
-        setTimeout(() => {
-            isTouching = false;
-        }, 300);
-    });
-    
-    hamburgerBtn.addEventListener('click', function(e) {
-        // Only fire if this wasn't triggered by a touch event
-        if (!isTouching) {
+        const touchEndTime = Date.now();
+        const touchEndY = e.changedTouches[0].clientY;
+        const timeDiff = touchEndTime - touchStartTime;
+        const yDiff = Math.abs(touchEndY - touchStartY);
+        
+        // Only trigger if it was a quick tap (not a swipe)
+        if (timeDiff < 300 && yDiff < 10) {
+            e.preventDefault();
+            e.stopPropagation();
             toggleMenu(e);
         }
     });
     
-    // Close menu when clicking outside (use a single listener)
-    let clickOutsideHandler = function(e) {
-        if (hamburgerBtn && hamburgerMenu && 
-            !hamburgerBtn.contains(e.target) && 
-            !hamburgerMenu.contains(e.target) &&
-            hamburgerMenu.classList.contains('active')) {
-            hamburgerBtn.classList.remove('active');
-            hamburgerMenu.classList.remove('active');
+    hamburgerBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu(e);
+    });
+    
+    // Close menu when clicking outside
+    function closeMenuIfOutside(e) {
+        if (hamburgerMenu.classList.contains('active')) {
+            const target = e.target;
+            if (!hamburgerBtn.contains(target) && !hamburgerMenu.contains(target)) {
+                hamburgerBtn.classList.remove('active');
+                hamburgerMenu.classList.remove('active');
+            }
         }
-    };
-    document.addEventListener('click', clickOutsideHandler);
-    document.addEventListener('touchend', clickOutsideHandler);
+    }
+    
+    document.addEventListener('click', closeMenuIfOutside);
+    document.addEventListener('touchend', closeMenuIfOutside);
     
     // Close menu when clicking a menu item
     const menuItems = hamburgerMenu.querySelectorAll('.menu-item');
     menuItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function(e) {
+            hamburgerBtn.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        });
+        item.addEventListener('touchend', function(e) {
             hamburgerBtn.classList.remove('active');
             hamburgerMenu.classList.remove('active');
         });
