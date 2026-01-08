@@ -908,3 +908,373 @@ html {
     }
 }
 
+/* Comprehensive Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    .fixed-header {
+        width: 98%;
+        padding: 8px 15px;
+        top: 10px;
+    }
+    
+    .company-name {
+        font-size: 14px;
+    }
+    
+    .logo-image {
+        height: 40px;
+    }
+    
+    .get-started-btn {
+        padding: 6px 16px;
+        font-size: 12px;
+        margin-right: 5px;
+    }
+    
+    /* Carousel buttons - make scrollable on mobile */
+    .carousel-buttons {
+        gap: 15px;
+        padding: 0 20px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .carousel-buttons::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .carousel-btn {
+        padding: 14px 24px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+    
+    /* Carousel section padding */
+    .carousel-section {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+    
+    /* Text section */
+    .text-section {
+        padding: 30px 20px 60px 20px;
+    }
+    
+    /* Laptop container */
+    .laptop-container {
+        padding: 20px 10px;
+        padding-top: 100px;
+    }
+    
+    .laptop-screen {
+        min-height: 500px;
+    }
+    
+    /* Overlay content */
+    .overlay-content {
+        padding-top: 30vh;
+    }
+    
+    .scroll-prompt {
+        bottom: 40px;
+        font-size: 12px;
+    }
+    
+    .scroll-arrow {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Very small screens */
+    .fixed-header {
+        width: 100%;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+        padding: 10px 15px;
+    }
+    
+    .company-name {
+        font-size: 12px;
+        display: none; /* Hide on very small screens */
+    }
+    
+    .logo-image {
+        height: 35px;
+    }
+    
+    .get-started-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+    
+    /* Carousel */
+    .carousel-section {
+        padding: 30px 10px;
+    }
+    
+    .carousel-buttons {
+        gap: 10px;
+        padding: 0 10px;
+    }
+    
+    .carousel-btn {
+        padding: 12px 18px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+    
+    /* Text section */
+    .text-section {
+        padding: 25px 15px 50px 15px;
+    }
+    
+    .large-text {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+    
+    .get-offer-btn {
+        padding: 14px 30px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .stats-section {
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 30px;
+    }
+    
+    .stat-value {
+        font-size: 1.8rem;
+    }
+    
+    .stat-label {
+        font-size: 0.85rem;
+    }
+    
+    /* Laptop container */
+    .laptop-container {
+        padding: 10px 5px;
+        padding-top: 80px;
+    }
+    
+    .laptop-screen {
+        min-height: 400px;
+        border-radius: 4px;
+    }
+    
+    .main-headline {
+        font-size: 1.8rem;
+        padding: 0 15px;
+    }
+    
+    .overlay-content {
+        padding-top: 25vh;
+    }
+    
+    .scroll-prompt {
+        bottom: 30px;
+        font-size: 11px;
+    }
+}
+
+/* Mobile styles for other pages */
+@media (max-width: 768px) {
+    .contact-page,
+    .about-page,
+    .faq-page,
+    .services-page {
+        padding-top: 80px;
+    }
+    
+    .services-hero {
+        padding: 40px 20px;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .hero-title h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-description {
+        padding-top: 0;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .hero-description p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .services-hero {
+        padding: 30px 15px;
+    }
+}
+    
+    .contact-hero,
+    .about-hero,
+    .faq-hero {
+        padding: 50px 20px;
+    }
+    
+    .contact-hero h1,
+    .about-hero h1,
+    .faq-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .faq-section {
+        padding: 40px 20px;
+    }
+    
+    .faq-question {
+        padding: 15px 20px;
+    }
+    
+    .faq-question h2 {
+        font-size: 1.2rem;
+    }
+    
+    .faq-answer {
+        padding: 0 20px;
+    }
+    
+    .faq-answer.active {
+        padding: 0 20px 15px 20px;
+    }
+    
+    .faq-answer p {
+        font-size: 1rem;
+    }
+    
+    .cta-section {
+        padding: 40px 20px;
+    }
+    
+    .cta-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cta-section p {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-hero h1,
+    .about-hero h1,
+    .faq-hero h1 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .contact-hero p,
+    .about-hero p {
+        font-size: 1rem;
+    }
+    
+    .faq-question h2 {
+        font-size: 1rem;
+    }
+    
+    .faq-answer p {
+        font-size: 0.9rem;
+    }
+    
+    .cta-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .cta-section p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Ensure images and videos are responsive */
+@media (max-width: 768px) {
+    .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .background-video {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Touch-friendly tap targets */
+@media (max-width: 768px) {
+    .carousel-btn,
+    .get-started-btn,
+    .get-offer-btn,
+    .cta-button,
+    .faq-toggle {
+        min-height: 44px; /* iOS recommended tap target size */
+    }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 360px) {
+    /* Extra small devices */
+    .main-headline {
+        font-size: 1.5rem;
+    }
+    
+    .carousel-btn {
+        padding: 10px 16px;
+        font-size: 11px;
+    }
+    
+    .company-name {
+        display: none;
+    }
+    
+    .large-text {
+        font-size: 1.3rem;
+    }
+    
+    .get-offer-btn {
+        font-size: 14px;
+        padding: 12px 25px;
+    }
+}
+
