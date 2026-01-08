@@ -472,6 +472,40 @@ body {
     overflow: hidden;
 }
 
+/* Fix scrolling on mobile - ensure overlay doesn't block */
+@media (max-width: 768px) {
+    .marketing-overlay {
+        pointer-events: none !important;
+        touch-action: none;
+    }
+    
+    /* Ensure body and html can scroll */
+    body, html {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        position: relative !important;
+        height: auto !important;
+        min-height: 100vh;
+    }
+    
+    /* Services page specific scroll fix */
+    .services-page {
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        -webkit-overflow-scrolling: touch !important;
+        position: relative !important;
+        height: auto !important;
+        min-height: 100vh;
+    }
+    
+    /* Prevent any fixed elements from blocking scroll */
+    .fixed-header {
+        position: fixed !important;
+        touch-action: pan-y !important;
+    }
+}
+
 .background-video {
     position: absolute;
     top: 0;
@@ -1465,19 +1499,21 @@ html {
         right: 10px !important;
     }
     
-    /* Services Page Mobile Styles */
+    /* Services Page Mobile Styles - Reduced Spacing */
     .services-hero {
-        padding: 40px 20px !important;
+        padding: 30px 15px !important;
         text-align: center;
+        margin: 0 !important;
     }
     
     .article-section {
         flex-direction: column !important;
-        gap: 25px !important;
+        gap: 15px !important;
         padding: 0 !important;
         min-height: auto !important;
         align-items: center;
         text-align: center;
+        margin: 0 !important;
     }
     
     .article-section.reverse {
@@ -1491,7 +1527,8 @@ html {
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
-        gap: 20px;
+        gap: 15px !important;
+        margin: 0 !important;
     }
     
     .article-title {
@@ -1499,7 +1536,7 @@ html {
         white-space: normal !important;
         text-align: center !important;
         width: 100% !important;
-        margin: 0 auto 20px auto !important;
+        margin: 0 auto 10px auto !important;
         line-height: 1.3 !important;
     }
     
@@ -1507,22 +1544,23 @@ html {
         font-size: 1.8rem !important;
         text-align: center !important;
         width: 100% !important;
-        margin: 0 auto 20px auto !important;
+        margin: 0 auto 10px auto !important;
     }
     
     .article-title-section p {
         font-size: 1rem !important;
         text-align: center !important;
+        margin: 0 !important;
     }
     
     .article-image {
         width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
-        max-height: 250px !important;
+        max-height: 200px !important;
         object-fit: cover;
         border-radius: 8px;
-        margin: 0 auto !important;
+        margin: 0 auto 10px auto !important;
         display: block;
     }
     
@@ -1543,32 +1581,33 @@ html {
     
     .content-card {
         width: 100% !important;
-        padding: 25px 20px !important;
+        padding: 20px 15px !important;
         text-align: center !important;
-        margin: 0 auto;
+        margin: 0 auto !important;
         box-sizing: border-box;
     }
     
     .content-card h4 {
         font-size: 1.3rem !important;
         text-align: center !important;
-        margin: 0 auto 15px auto !important;
+        margin: 0 auto 10px auto !important;
     }
     
     .content-card p {
         font-size: 1rem !important;
         text-align: center !important;
-        margin: 20px auto 15px auto !important;
+        margin: 15px auto 10px auto !important;
         max-width: 100%;
         width: 100%;
     }
     
     .content-card p:last-child {
         margin-bottom: 0 !important;
+        margin-top: 15px !important;
     }
     
     .content-card ul {
-        margin: 20px auto !important;
+        margin: 15px auto !important;
         padding-left: 0 !important;
         display: block;
         text-align: center !important;
@@ -1581,7 +1620,7 @@ html {
     .content-card li {
         font-size: 1rem !important;
         text-align: center !important;
-        margin: 12px 0 !important;
+        margin: 10px 0 !important;
         padding: 0 !important;
         position: relative;
     }
@@ -1613,7 +1652,7 @@ html {
     }
     
     .divider-line {
-        margin: 30px auto !important;
+        margin: 20px auto !important;
         max-width: 100%;
     }
     
@@ -1652,7 +1691,7 @@ html {
         width: 100% !important;
         max-width: 100% !important;
         padding: 0 !important;
-        margin: 30px auto !important;
+        margin: 20px auto !important;
         display: block !important;
         text-align: center !important;
         list-style: none !important;
@@ -1663,7 +1702,7 @@ html {
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
-        margin: 35px 0 !important;
+        margin: 25px 0 !important;
         padding: 0 !important;
         width: 100% !important;
         box-sizing: border-box;
@@ -1685,7 +1724,7 @@ html {
     .process-item h4 {
         font-size: 1.2rem !important;
         text-align: center !important;
-        margin: 0 auto 10px auto !important;
+        margin: 0 auto 8px auto !important;
         width: 100%;
         white-space: normal !important;
     }
@@ -1702,7 +1741,7 @@ html {
         position: relative !important;
         left: auto !important;
         top: auto !important;
-        margin: 0 auto 20px auto !important;
+        margin: 0 auto 15px auto !important;
         display: block !important;
         width: auto !important;
         margin-right: 0 !important;
@@ -1711,20 +1750,21 @@ html {
     
     /* CTA Section Mobile */
     .cta-section {
-        padding: 50px 20px !important;
+        padding: 40px 20px !important;
         text-align: center !important;
-        margin: 0 auto;
+        margin: 0 auto !important;
+        margin-top: 40px !important;
     }
     
     .cta-section h2 {
         text-align: center !important;
-        margin: 0 auto 20px auto !important;
+        margin: 0 auto 15px auto !important;
         width: 100%;
     }
     
     .cta-section p {
         text-align: center !important;
-        margin: 0 auto 30px auto !important;
+        margin: 0 auto 25px auto !important;
         width: 100%;
         max-width: 100%;
     }
@@ -1742,11 +1782,33 @@ html {
         text-align: center !important;
     }
     
+    /* Fix scrolling issues on mobile */
+    .services-page {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        height: auto !important;
+        min-height: 100vh;
+    }
+    
+    body {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        position: relative !important;
+    }
+    
+    html {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    
     .benefits-list {
         width: 100% !important;
         max-width: 100% !important;
         padding: 0 !important;
-        margin: 20px auto !important;
+        margin: 15px auto !important;
         display: block !important;
         text-align: center !important;
         list-style: none !important;
@@ -1754,24 +1816,24 @@ html {
     
     .benefit-item {
         text-align: center !important;
-        margin: 15px 0 !important;
+        margin: 12px 0 !important;
         font-size: 1.1rem !important;
         width: 100% !important;
         padding: 0 !important;
         list-style: none !important;
     }
     
-    /* Ensure all sections have consistent spacing */
+    /* Ensure all sections have consistent spacing - Reduced */
     .services-hero {
-        padding: 40px 20px !important;
-        margin: 0 auto;
+        padding: 30px 15px !important;
+        margin: 0 auto !important;
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
     }
     
     .services-hero .divider-line {
-        margin: 0 auto 30px auto !important;
+        margin: 0 auto 20px auto !important;
         max-width: 90%;
         width: 100%;
     }
@@ -1782,10 +1844,10 @@ html {
         width: 100% !important;
     }
     
-    /* Fix spacing between sections */
+    /* Fix spacing between sections - Reduced */
     .services-hero + .services-hero {
         margin-top: 0 !important;
-        padding-top: 40px !important;
+        padding-top: 30px !important;
     }
     
     /* Ensure hero content is centered */
