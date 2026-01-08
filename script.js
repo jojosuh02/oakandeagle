@@ -20,42 +20,27 @@ function initHamburgerMenu() {
             e.preventDefault();
             e.stopPropagation();
         }
-        hamburgerBtn.classList.toggle('active');
-        hamburgerMenu.classList.toggle('active');
+        const isActive = hamburgerMenu.classList.contains('active');
+        if (isActive) {
+            hamburgerBtn.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        } else {
+            hamburgerBtn.classList.add('active');
+            hamburgerMenu.classList.add('active');
+        }
     }
     
-    // Use a single event handler that works for both touch and click
-    let touchStartTime = 0;
-    let touchStartY = 0;
+    // Add click event listener - works on both desktop and mobile
+    hamburgerBtn.addEventListener('click', toggleMenu, false);
     
-    hamburgerBtn.addEventListener('touchstart', function(e) {
-        touchStartTime = Date.now();
-        touchStartY = e.touches[0].clientY;
-        e.stopPropagation();
-    }, { passive: true });
-    
+    // Also add touch event for better mobile support
     hamburgerBtn.addEventListener('touchend', function(e) {
-        const touchEndTime = Date.now();
-        const touchEndY = e.changedTouches[0].clientY;
-        const timeDiff = touchEndTime - touchStartTime;
-        const yDiff = Math.abs(touchEndY - touchStartY);
-        
-        // Only trigger if it was a quick tap (not a swipe)
-        if (timeDiff < 300 && yDiff < 10) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleMenu(e);
-        }
-    });
-    
-    hamburgerBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation();
         toggleMenu(e);
-    });
+    }, false);
     
     // Close menu when clicking outside
-    function closeMenuIfOutside(e) {
+    document.addEventListener('click', function(e) {
         if (hamburgerMenu.classList.contains('active')) {
             const target = e.target;
             if (!hamburgerBtn.contains(target) && !hamburgerMenu.contains(target)) {
@@ -63,22 +48,15 @@ function initHamburgerMenu() {
                 hamburgerMenu.classList.remove('active');
             }
         }
-    }
-    
-    document.addEventListener('click', closeMenuIfOutside);
-    document.addEventListener('touchend', closeMenuIfOutside);
+    }, false);
     
     // Close menu when clicking a menu item
     const menuItems = hamburgerMenu.querySelectorAll('.menu-item');
     menuItems.forEach(item => {
-        item.addEventListener('click', function(e) {
+        item.addEventListener('click', function() {
             hamburgerBtn.classList.remove('active');
             hamburgerMenu.classList.remove('active');
-        });
-        item.addEventListener('touchend', function(e) {
-            hamburgerBtn.classList.remove('active');
-            hamburgerMenu.classList.remove('active');
-        });
+        }, false);
     });
 }
 
