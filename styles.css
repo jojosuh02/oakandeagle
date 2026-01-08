@@ -82,6 +82,7 @@ body {
     transition: background 0.3s ease, backdrop-filter 0.3s ease, top 0.3s ease;
     padding: 10px 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
 }
 
 .fixed-header.scrolled {
@@ -912,9 +913,14 @@ html {
 @media (max-width: 768px) {
     /* Header adjustments */
     .fixed-header {
-        width: 98%;
+        width: 100%;
+        max-width: 100vw;
         padding: 8px 15px;
         top: 10px;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+        box-sizing: border-box;
     }
     
     .company-name {
@@ -931,36 +937,42 @@ html {
         margin-right: 5px;
     }
     
-    /* Carousel buttons - make scrollable on mobile */
+    /* Carousel buttons - stack vertically on mobile */
     .carousel-buttons {
-        gap: 15px;
+        flex-direction: column;
+        gap: 12px;
         padding: 0 20px;
-        justify-content: flex-start;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    
-    .carousel-buttons::-webkit-scrollbar {
-        display: none;
+        justify-content: center;
+        align-items: stretch;
+        overflow-x: visible;
+        width: 100%;
+        max-width: 100%;
     }
     
     .carousel-btn {
-        padding: 14px 24px;
+        padding: 14px 20px;
         font-size: 14px;
-        flex-shrink: 0;
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+        word-wrap: break-word;
     }
     
     /* Carousel section padding */
     .carousel-section {
-        padding: 40px 20px;
+        padding: 40px 15px;
         min-height: auto;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
     
     /* Text section */
     .text-section {
-        padding: 30px 20px 60px 20px;
+        padding: 30px 15px 60px 15px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
     
     /* Laptop container */
@@ -992,11 +1004,13 @@ html {
     /* Very small screens */
     .fixed-header {
         width: 100%;
+        max-width: 100vw;
         border-radius: 0;
         top: 0;
         left: 0;
         transform: none;
         padding: 10px 15px;
+        box-sizing: border-box;
     }
     
     .company-name {
@@ -1016,17 +1030,22 @@ html {
     /* Carousel */
     .carousel-section {
         padding: 30px 10px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
     
     .carousel-buttons {
         gap: 10px;
         padding: 0 10px;
+        flex-direction: column;
     }
     
     .carousel-btn {
         padding: 12px 18px;
         font-size: 12px;
         border-radius: 8px;
+        width: 100%;
     }
     
     /* Text section */
@@ -1235,10 +1254,98 @@ html {
     }
 }
 
-/* Prevent horizontal scroll on mobile */
+/* Prevent horizontal scroll on mobile - ensure vertical-only layout */
 body {
     overflow-x: hidden;
     max-width: 100vw;
+    width: 100%;
+}
+
+html {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure all containers respect viewport width - vertical-only layout */
+@media (max-width: 768px) {
+    .laptop-container,
+    .carousel-section,
+    .text-section,
+    .contact-page,
+    .about-page,
+    .services-page,
+    .faq-page {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .carousel-container {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 0;
+    }
+    
+    .carousel-track {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .carousel-slide {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+    }
+    
+    .carousel-slide img {
+        width: 100%;
+        max-width: 100%;
+        object-fit: cover;
+    }
+    
+    /* Ensure text doesn't overflow */
+    .large-text,
+    .carousel-text h3,
+    .carousel-text p,
+    .main-headline,
+    .company-name {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        max-width: 100%;
+    }
+    
+    /* Ensure buttons and interactive elements fit */
+    .get-started-btn,
+    .get-offer-btn,
+    .cta-button {
+        max-width: calc(100% - 40px);
+        width: auto;
+    }
+    
+    /* Header content */
+    .header-left,
+    .header-right {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    /* Stats section - ensure vertical stacking */
+    .stats-section {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
 }
 
 /* Touch-friendly tap targets */
@@ -1262,6 +1369,12 @@ body {
     .carousel-btn {
         padding: 10px 16px;
         font-size: 11px;
+        width: 100%;
+    }
+    
+    .carousel-buttons {
+        flex-direction: column;
+        width: 100%;
     }
     
     .company-name {
