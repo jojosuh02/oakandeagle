@@ -9,6 +9,8 @@ body {
     background: #ffffff;
     color: #1a1a1a;
     overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .laptop-container {
@@ -489,6 +491,17 @@ body {
         height: auto !important;
         min-height: 100vh;
         touch-action: pan-y !important;
+        scroll-behavior: auto !important;
+    }
+    
+    /* Prevent initial scroll bounce on services page */
+    .services-page {
+        scroll-behavior: auto !important;
+    }
+    
+    /* Disable smooth scroll on mobile to prevent bounce */
+    html {
+        scroll-behavior: auto !important;
     }
     
     /* Services page specific scroll fix */
@@ -727,6 +740,26 @@ body {
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+/* Disable smooth scroll on mobile to prevent initial bounce */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: auto !important;
+    }
+    
+    body {
+        scroll-behavior: auto !important;
+    }
+    
+    .services-page {
+        scroll-behavior: auto !important;
+    }
+    
+    /* Prevent any scroll position reset on touch */
+    * {
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 /* Carousel Section */

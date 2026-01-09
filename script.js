@@ -72,6 +72,48 @@ setupHamburgerMenu();
 
 // Smooth scroll behavior and fade effects
 document.addEventListener('DOMContentLoaded', function() {
+    // Prevent initial scroll bounce on mobile
+    if (window.innerWidth <= 768) {
+        // Disable smooth scroll on mobile to prevent bounce
+        document.documentElement.style.scrollBehavior = 'auto';
+        document.body.style.scrollBehavior = 'auto';
+        
+        // Ensure page doesn't try to scroll to top on load
+        if (window.location.pathname.includes('services.html')) {
+            // Prevent any initial scroll reset
+            const savedScroll = sessionStorage.getItem('servicesScroll');
+            if (savedScroll) {
+                window.scrollTo(0, parseInt(savedScroll));
+            }
+            
+            // Save scroll position before unload
+            window.addEventListener('beforeunload', function() {
+                sessionStorage.setItem('servicesScroll', window.pageYOffset || document.documentElement.scrollTop);
+            });
+        }
+        
+        // Prevent scroll bounce on first touch
+        let firstScroll = true;
+        let lastKnownScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        window.addEventListener('touchmove', function() {
+            if (firstScroll) {
+                firstScroll = false;
+                lastKnownScroll = window.pageYOffset || document.documentElement.scrollTop;
+            }
+        }, { passive: true });
+        
+        // Monitor for unexpected scroll resets
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            // If scroll jumps back unexpectedly (more than 100px), it's likely a bounce
+            if (currentScroll < lastKnownScroll - 100 && lastKnownScroll > 100 && !firstScroll) {
+                // Allow it but log for debugging - don't interfere with natural bounce
+            }
+            lastKnownScroll = currentScroll;
+        }, { passive: true });
+    }
+    
     // Logo link - navigate to homepage or scroll to top if already on homepage
     const logoLink = document.querySelector('.logo-link');
     if (logoLink) {
@@ -93,14 +135,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Scroll overlay up as user scrolls down (no fading)
     if (marketingOverlay) {
+        let isScrolling = false;
         window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Move overlay up as user scrolls (parallax effect)
-            const translateY = -scrollTop;
-            marketingOverlay.style.transform = `translateY(${translateY}px)`;
-            marketingOverlay.style.opacity = 1; // Keep opacity at 1, no fading
-        });
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(function() {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    // Move overlay up as user scrolls (parallax effect)
+                    const translateY = -scrollTop;
+                    marketingOverlay.style.transform = `translateY(${translateY}px)`;
+                    marketingOverlay.style.opacity = 1; // Keep opacity at 1, no fading
+                    isScrolling = false;
+                });
+            }
+        }, { passive: true });
     }
     
     // Update header on scroll
@@ -112,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 fixedHeader.classList.remove('scrolled');
             }
-        });
+        }, { passive: true });
     }
     
     // Smooth scroll to content when clicking scroll prompt
