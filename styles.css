@@ -86,6 +86,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
     pointer-events: auto;
+    touch-action: pan-y;
 }
 
 .fixed-header.scrolled {
@@ -487,6 +488,7 @@ body {
         position: relative !important;
         height: auto !important;
         min-height: 100vh;
+        touch-action: pan-y !important;
     }
     
     /* Services page specific scroll fix */
@@ -497,12 +499,87 @@ body {
         position: relative !important;
         height: auto !important;
         min-height: 100vh;
+        touch-action: pan-y !important;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: scroll-position;
     }
     
     /* Prevent any fixed elements from blocking scroll */
     .fixed-header {
         position: fixed !important;
         touch-action: pan-y !important;
+        pointer-events: auto !important;
+    }
+    
+    /* Ensure header doesn't capture all touch events - only interactive elements */
+    .fixed-header .header-left,
+    .fixed-header .header-right {
+        touch-action: manipulation;
+    }
+    
+    /* Critical: Make sure the header background doesn't block page scrolling */
+    .fixed-header::before {
+        display: none;
+    }
+    
+    /* Ensure company name and logo don't block scroll - make them non-interactive for scroll */
+    .fixed-header .company-name {
+        pointer-events: none !important;
+        touch-action: pan-y !important;
+    }
+    
+    .fixed-header .logo-link {
+        pointer-events: auto;
+        touch-action: manipulation;
+    }
+    
+    .fixed-header .logo-image {
+        pointer-events: none;
+    }
+    
+    /* Only buttons and links should be interactive */
+    .fixed-header a,
+    .fixed-header button {
+        pointer-events: auto;
+        touch-action: manipulation;
+    }
+    
+    /* Make header container allow scroll-through on non-interactive areas */
+    /* Don't make entire header non-interactive, just ensure it doesn't block scroll */
+    .fixed-header {
+        pointer-events: auto !important;
+    }
+    
+    /* But ensure scroll events pass through to body when not interacting with header elements */
+    .fixed-header:not(:active):not(:focus-within) {
+        touch-action: pan-y;
+    }
+    
+    /* Ensure body can receive scroll events */
+    body {
+        -webkit-overflow-scrolling: touch !important;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Make sure services hero sections don't block scroll */
+    .services-hero {
+        touch-action: pan-y !important;
+        position: relative !important;
+    }
+    
+    /* Ensure all content is scrollable */
+    .article-section,
+    .content-card,
+    .cta-section {
+        touch-action: pan-y !important;
+        position: relative !important;
+    }
+    
+    /* Ensure the page container allows scrolling */
+    .services-page > * {
+        touch-action: pan-y;
     }
 }
 
@@ -1782,26 +1859,50 @@ html {
         text-align: center !important;
     }
     
-    /* Fix scrolling issues on mobile */
+    /* Fix scrolling issues on mobile - Services page */
     .services-page {
         overflow-x: hidden !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch;
+        overflow-y: visible !important;
+        -webkit-overflow-scrolling: touch !important;
         height: auto !important;
         min-height: 100vh;
+        touch-action: pan-y !important;
+        position: relative !important;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
     }
     
     body {
         overflow-x: hidden !important;
         overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: touch !important;
         position: relative !important;
+        touch-action: pan-y !important;
     }
     
     html {
         overflow-x: hidden !important;
         overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+    }
+    
+    /* Ensure fixed header doesn't block page scroll */
+    .fixed-header {
+        touch-action: pan-y !important;
+    }
+    
+    /* Only interactive elements in header should capture touch */
+    .fixed-header a,
+    .fixed-header button {
+        touch-action: manipulation;
+    }
+    
+    /* Everything else should allow scrolling */
+    .fixed-header .company-name,
+    .fixed-header .header-left:not(:has(a)):not(:has(button)) {
+        touch-action: pan-y;
+        pointer-events: none;
     }
     
     .benefits-list {
