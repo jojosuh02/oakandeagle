@@ -12,450 +12,202 @@
         .services-page {
             padding-top: 100px;
             background: #ffffff;
-        }
-        
-        @media (max-width: 768px) {
-            .services-page {
-                padding-top: 70px;
-                scroll-behavior: auto;
-            }
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+            box-sizing: border-box;
         }
         
         .services-hero {
-            padding: 60px 40px;
-            max-width: 1400px;
+            text-align: center;
+            padding: 80px 40px;
+            max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 80px;
-            margin-bottom: 50px;
-        }
-        
-        .hero-title {
-            flex: 1;
-        }
-        
-        .hero-title h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin: 0;
-            line-height: 1.1;
-        }
-        
-        .hero-description {
-            flex: 1;
-            padding-top: 20px;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin: 0 0 15px 0;
-        }
-        
-        .hero-description p {
-            font-size: 1.2rem;
-            color: #666;
-            line-height: 1.8;
-            margin: 0;
-        }
-        
-        .divider-line {
             width: 100%;
-            height: 1px;
-            background: #1a1a1a;
-            margin: 30px 0;
+            box-sizing: border-box;
         }
         
-        .article-section {
-            display: flex;
-            align-items: center;
-            gap: 80px;
-            padding: 30px 0;
-            min-height: 500px;
-        }
-        
-        .article-section.fade-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .article-section.fade-section.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .cta-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .cta-section.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .article-title-section {
-            flex: 0 0 500px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .article-title {
+        .services-hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
             color: #1a1a1a;
-            margin: 0 0 20px 0;
-            line-height: 1.2;
-            white-space: nowrap;
+            margin-bottom: 30px;
         }
         
-        .article-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-top: 0;
-            flex-shrink: 0;
-        }
-        
-        .article-card {
-            flex: 1;
-            background: #ffffff;
-            padding: 50px;
-            border-radius: 8px;
-            color: #1a1a1a;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border: none;
-        }
-        
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #666;
-        }
-        
-        .card-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 25px 0;
-            line-height: 1.3;
-            color: #1a1a1a;
-        }
-        
-        .card-title strong {
-            font-weight: 900;
-            text-decoration: underline;
-        }
-        
-        .card-description {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: #666;
-        }
-        
-        .services-section {
-            padding: 40px 0;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .content-card {
-            background: #ffffff;
-            padding: 50px;
-            border-radius: 8px;
-            border: none;
-            min-height: 500px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 80px;
-            margin-top: 150px;
-        }
-        
-        .carousel-container-vertical {
-            position: relative;
-            height: 500px;
-            overflow: hidden;
-            border-radius: 8px;
-            min-height: 500px;
-            flex: 1;
-            background: #ffffff;
-            border: none;
-        }
-        
-        .carousel-arrows {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 10;
-        }
-        
-        .carousel-arrow {
-            width: 40px;
-            height: 40px;
-            background: #1a1a1a;
-            color: #ffffff;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 1;
-            padding: 0;
-            margin: 0;
-            transition: all 0.3s ease;
-            text-transform: none;
-            font-family: Arial, sans-serif;
-            position: relative;
-        }
-        
-        .carousel-arrow span {
-            display: inline-block;
-            line-height: 1;
-            vertical-align: middle;
-        }
-        
-        .carousel-arrow:hover {
-            background: #333333;
-            transform: scale(1.1);
-        }
-        
-        .carousel-arrow:active {
-            transform: scale(0.95);
-        }
-        
-        .carousel-arrow:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-        
-        .carousel-track-vertical {
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.6s ease-in-out;
-        }
-        
-        .carousel-slide-vertical {
-            min-height: 500px;
-            width: 100%;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            border: none;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .carousel-slide-vertical h4 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            margin-top: 0;
-        }
-        
-        .carousel-slide-vertical p {
-            font-size: 1.4rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        
-        .carousel-slide-vertical ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .carousel-slide-vertical li {
-            font-size: 1.2rem;
-            color: #666;
-            padding: 10px 0;
-            padding-left: 25px;
-            position: relative;
-            line-height: 1.6;
-            text-align: left;
-        }
-        
-        .carousel-slide-vertical li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #2d7a3d;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .content-card h4 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-            margin-top: 20px;
-        }
-        
-        .content-card h4:first-child {
-            margin-top: 0;
-        }
-        
-        .content-card p {
+        .services-hero p {
             font-size: 1.3rem;
             color: #666;
             line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .services-section {
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card-bottom-wrapper {
+            grid-column: 1 / 4;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: calc(66.666% + 30px);
+            margin: 0 auto;
+        }
+        
+        .service-card-bottom-wrapper .service-card {
+            flex: 0 1 calc(50% - 15px);
+            max-width: calc(50% - 15px);
+        }
+        
+        .service-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #2d7a3d;
+        }
+        
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
             margin-bottom: 15px;
         }
         
-        .content-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0;
-        }
-        
-        .content-card li {
-            font-size: 1.2rem;
+        .service-card p {
+            font-size: 1.1rem;
             color: #666;
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        .content-card li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #2d7a3d;
-            font-weight: bold;
-            font-size: 1.2rem;
+            line-height: 1.7;
+            margin: 0;
         }
         
         .land-types-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
         
-        .land-type-item {
-            padding: 15px;
-            background: #ffffff;
-            border: none;
-            border-radius: 4px;
-        }
-        
-        .land-type-item h4 {
-            font-size: 1rem;
-            font-weight: 600;
+        .land-types-list li {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-size: 1.1rem;
             color: #1a1a1a;
-            margin: 0;
+            border-left: 4px solid #2d7a3d;
         }
         
         .benefits-list {
             list-style: none;
             padding: 0;
-            margin: 20px 0;
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
         
         .benefit-item {
-            padding: 12px 0;
+            padding: 25px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 1.2rem;
             color: #1a1a1a;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .benefit-item::before {
+            content: "✔";
+            color: #2d7a3d;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
         
         .process-list {
             list-style: none;
             padding: 0;
-            margin: 20px 0;
+            margin: 30px 0;
         }
         
         .process-item {
-            margin-bottom: 30px;
-            padding-left: 0;
-            position: relative;
-            list-style: none;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
         }
         
-        .process-item::before {
-            display: none;
-        }
-        
-        .process-item .step-number {
-            position: absolute;
-            left: 0;
-            top: 5px;
-            font-size: 2.5rem;
+        .process-number {
+            font-size: 3rem;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
             color: #2d7a3d;
-            line-height: 1.2;
-            height: 1.2em;
+            min-width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
-            width: 80px;
-            margin-right: 40px;
+            justify-content: center;
         }
         
-        .process-item-content {
-            margin-left: 60px;
-        }
-        
-        .process-item h4 {
-            font-size: 1.3rem;
-            font-weight: 600;
+        .process-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: #1a1a1a;
-            margin-bottom: 12px;
-            margin-top: 0;
-            line-height: 1.2;
-            white-space: nowrap;
+            margin-bottom: 10px;
         }
         
-        .process-item p {
-            font-size: 1rem;
+        .process-content p {
+            font-size: 1.1rem;
             color: #666;
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
         }
         
         .cta-section {
             text-align: center;
-            padding: 60px 40px;
+            padding: 80px 40px;
             background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
             margin-top: 60px;
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
         }
         
         .cta-section h2 {
@@ -469,13 +221,6 @@
             font-size: 1.2rem;
             color: #666;
             margin-bottom: 30px;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
         }
         
         .cta-button {
@@ -500,22 +245,208 @@
         }
         
         @media (max-width: 768px) {
-            .hero-content {
+            .services-page {
+                padding-top: 70px;
+                overflow-x: hidden;
+                width: 100%;
+                max-width: 100vw;
+            }
+            
+            .services-hero {
+                padding: 40px 20px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .services-hero h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+                word-wrap: break-word;
+            }
+            
+            .services-hero p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .services-section {
+                padding: 40px 20px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+                line-height: 1.3;
+                word-wrap: break-word;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                width: 100%;
+            }
+            
+            .service-card-bottom-wrapper {
+                grid-column: 1;
                 flex-direction: column;
-                gap: 30px;
+                max-width: 100%;
+                width: 100%;
+                gap: 20px;
             }
             
-            .hero-title h1 {
-                font-size: 3rem;
+            .service-card-bottom-wrapper .service-card {
+                flex: 1 1 100%;
+                max-width: 100%;
+                width: 100%;
             }
             
-            .article-section {
-                flex-direction: column;
-                gap: 30px;
+            .service-card {
+                padding: 25px 20px;
+                width: 100%;
+                box-sizing: border-box;
             }
             
-            .article-title {
+            .service-icon {
                 font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .service-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+                line-height: 1.3;
+            }
+            
+            .service-card p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .land-types-list {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin: 20px 0;
+            }
+            
+            .land-types-list li {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .benefits-list {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin: 20px 0;
+            }
+            
+            .benefit-item {
+                padding: 20px 15px;
+                font-size: 1.1rem;
+                gap: 12px;
+            }
+            
+            .benefit-item::before {
+                font-size: 1.3rem;
+                flex-shrink: 0;
+            }
+            
+            .process-list {
+                margin: 20px 0;
+            }
+            
+            .process-item {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+            
+            .process-number {
+                min-width: 50px;
+                height: 50px;
+                font-size: 2.5rem;
+                align-self: flex-start;
+            }
+            
+            .process-content h3 {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+                line-height: 1.3;
+            }
+            
+            .process-content p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .cta-section {
+                padding: 50px 20px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem;
+                line-height: 1.3;
+                margin-bottom: 15px;
+            }
+            
+            .cta-section p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 25px;
+            }
+            
+            .cta-button {
+                padding: 14px 30px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 300px;
+                box-sizing: border-box;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services-hero {
+                padding: 30px 15px;
+            }
+            
+            .services-hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .services-section {
+                padding: 30px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 25px;
+            }
+            
+            .service-card {
+                padding: 20px 15px;
+            }
+            
+            .service-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .service-card p {
+                font-size: 0.95rem;
+            }
+            
+            .process-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -548,147 +479,106 @@
 
     <div class="services-page">
         <div class="services-hero">
-            <div class="hero-content">
-                <div class="hero-title">
-                    <h1>Our Services</h1>
-                </div>
-                <div class="hero-description">
-                    <p class="hero-subtitle">No Hassle, No Fees.</p>
-                    <p>We specialize in buying vacant land directly from owners and matching it with vetted buyers or builders, often the same day. Our process is designed to be fast, transparent, and stress-free.</p>
-                </div>
-            </div>
+            <h1>Our Services</h1>
+            <p>We specialize in buying vacant land directly from owners and matching it with vetted buyers or builders. Our process is designed to be fast, transparent, and stress-free.</p>
         </div>
 
-        <div class="services-hero">
-            <div class="divider-line"></div>
-            
-            <div class="article-section">
-                <div class="article-title-section">
-                    <h2 class="article-title">What We Do</h2>
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop" alt="Business services" class="article-image">
+        <div class="services-section">
+            <h2 class="section-title">What We Do</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏞️</div>
+                    <h3>Direct Land Acquisition</h3>
+                    <p>We purchase vacant land directly from property owners. No listings, no agents, no commissions. You deal with us directly for a clean, simple transaction.</p>
                 </div>
-                <div class="carousel-container-vertical" id="whatWeDoCarousel">
-                    <div class="carousel-track-vertical" id="whatWeDoTrack">
-                        <div class="carousel-slide-vertical">
-                            <h4>Direct Land Acquisition</h4>
-                            <p>We purchase vacant land directly from property owners.</p>
-                            <p><strong>No listings</strong>, <strong>No agents</strong>, <strong>No commissions</strong></p>
-                            <p>You deal with us directly for a clean, simple transaction.</p>
-                        </div>
-                        <div class="carousel-slide-vertical">
-                            <h4>Same-Day Buyer & Builder Matching</h4>
-                            <p>We maintain an active network of:</p>
-                            <p><strong>Cash land buyers</strong>, <strong>Local and regional builders</strong>, <strong>Developers</strong></p>
-                            <p>This allows us to identify a buyer immediately after evaluating your property. Often within hours.</p>
-                        </div>
-                        <div class="carousel-slide-vertical">
-                            <h4>Cash Offers for Vacant Land</h4>
-                            <p><strong>Fair, data-driven cash offers</strong>, <strong>No financing delays</strong>, <strong>No contingencies</strong>, <strong>No repairs or cleanup required</strong></p>
-                            <p>If the numbers make sense, we move quickly.</p>
-                        </div>
-                        <div class="carousel-slide-vertical">
-                            <h4>We Handle All Closing Costs</h4>
-                            <p>We cover:</p>
-                            <p><strong>Title fees</strong>, <strong>Closing costs</strong>, <strong>Paperwork coordination</strong></p>
-                            <p>You receive the agreed-upon amount with no surprise deductions.</p>
-                        </div>
-                        <div class="carousel-slide-vertical">
-                            <h4>Flexible Closing Timeline</h4>
-                            <p>You choose the closing date:</p>
-                            <p><strong>Close in days</strong>, <strong>Or take time if needed</strong></p>
-                            <p>We work around your schedule, not the other way around.</p>
-                        </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Same-Day Buyer Matching</h3>
+                    <p>We maintain an active network of cash land buyers, local and regional builders, and developers. This allows us to identify a buyer immediately after evaluating your property, often within hours.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3>Cash Offers</h3>
+                    <p>Fair, data-driven cash offers with no financing delays, no contingencies, and no repairs or cleanup required. If the numbers make sense, we move quickly.</p>
+                </div>
+                
+                <div class="service-card-bottom-wrapper">
+                    <div class="service-card">
+                        <div class="service-icon">📋</div>
+                        <h3>We Handle All Closing Costs</h3>
+                        <p>We cover title fees, closing costs, and paperwork coordination. You receive the agreed-upon amount with no surprise deductions.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⏰</div>
+                        <h3>Flexible Closing Timeline</h3>
+                        <p>You choose the closing date. Close in days or take time if needed. We work around your schedule, not the other way around.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="services-hero">
-            <div class="divider-line"></div>
-            
-            <div class="article-section fade-section">
-                <div class="article-title-section">
-                    <h2 class="article-title">Types of Land We Work With</h2>
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop" alt="Rural landscape" class="article-image">
-                </div>
-                <div class="content-card">
-                    <p>We buy and place buyers for:</p>
-                    <ul>
-                        <li><strong>Vacant residential lots</strong></li>
-                        <li><strong>Rural land</strong></li>
-                        <li><strong>Unimproved parcels</strong></li>
-                        <li><strong>Inherited land</strong></li>
-                        <li><strong>Tax-burdened properties</strong></li>
-                        <li><strong>Land without road access or utilities</strong></li>
-                    </ul>
-                    <p>If it's vacant land, we're interested.</p>
-                </div>
-            </div>
+        <div class="services-section">
+            <h2 class="section-title">Types of Land We Work With</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">We buy and place buyers for all types of vacant land:</p>
+            <ul class="land-types-list">
+                <li>Vacant residential lots</li>
+                <li>Rural land</li>
+                <li>Unimproved parcels</li>
+                <li>Inherited land</li>
+                <li>Tax-burdened properties</li>
+                <li>Land without road access</li>
+                <li>Land without utilities</li>
+                <li>Any vacant land</li>
+            </ul>
         </div>
 
-        <div class="services-hero">
-            <div class="divider-line"></div>
-            
-            <div class="article-section fade-section">
-                <div class="article-title-section">
-                    <h2 class="article-title">Why Work With Us</h2>
-                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop" alt="Professional team" class="article-image">
-                </div>
-                <div class="content-card">
-                    <ul class="benefits-list">
-                        <li class="benefit-item">✔ No realtor fees</li>
-                        <li class="benefit-item">✔ No public listings</li>
-                        <li class="benefit-item">✔ No long wait times</li>
-                        <li class="benefit-item">✔ Clear communication</li>
-                        <li class="benefit-item">✔ Fast, professional closings</li>
-                    </ul>
-                    <p>We're not a brokerage. We're problem solvers for landowners.</p>
-                </div>
-            </div>
+        <div class="services-section">
+            <h2 class="section-title">Why Work With Us</h2>
+            <ul class="benefits-list">
+                <li class="benefit-item">No realtor fees</li>
+                <li class="benefit-item">No public listings</li>
+                <li class="benefit-item">No long wait times</li>
+                <li class="benefit-item">Clear communication</li>
+                <li class="benefit-item">Fast, professional closings</li>
+                <li class="benefit-item">We handle all paperwork</li>
+            </ul>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-top: 30px;">We're not a brokerage. We're problem solvers for landowners.</p>
         </div>
 
-        <div class="services-hero">
-            <div class="divider-line"></div>
-            
-            <div class="article-section fade-section">
-                <div class="article-title-section">
-                    <h2 class="article-title">Our Process (3 Simple Steps)</h2>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="Process workflow" class="article-image">
-                </div>
-                <div class="content-card">
-                    <ul class="process-list">
-                        <li class="process-item">
-                            <div class="step-number">1</div>
-                            <div class="process-item-content">
-                                <h4>Submit Your Property</h4>
-                                <p>Share the parcel details with us.</p>
-                            </div>
-                        </li>
-                        <li class="process-item">
-                            <div class="step-number">2</div>
-                            <div class="process-item-content">
-                                <h4>Receive an Offer</h4>
-                                <p>We analyze the property and identify a buyer or builder.</p>
-                            </div>
-                        </li>
-                        <li class="process-item">
-                            <div class="step-number">3</div>
-                            <div class="process-item-content">
-                                <h4>Close & Get Paid</h4>
-                                <p>We handle the paperwork and closing, you get paid.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <div class="services-section">
+            <h2 class="section-title">Our Process</h2>
+            <ul class="process-list">
+                <li class="process-item">
+                    <div class="process-number">1</div>
+                    <div class="process-content">
+                        <h3>Submit Your Property</h3>
+                        <p>Share the parcel details with us through our contact form or by reaching out directly.</p>
+                    </div>
+                </li>
+                <li class="process-item">
+                    <div class="process-number">2</div>
+                    <div class="process-content">
+                        <h3>Receive an Offer</h3>
+                        <p>We analyze the property and identify a buyer or builder. You'll receive a fair, data-driven cash offer.</p>
+                    </div>
+                </li>
+                <li class="process-item">
+                    <div class="process-number">3</div>
+                    <div class="process-content">
+                        <h3>Close & Get Paid</h3>
+                        <p>We handle all the paperwork and closing costs. You choose the closing date and get paid.</p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
         <div class="cta-section">
             <h2>Get Started Today</h2>
             <p>If you're looking to sell vacant land quickly and without hassle, we can help.</p>
-                    <div class="cta-buttons">
-                        <a href="contact.html" class="cta-button">GET OFFER</a>
-                    </div>
+            <a href="contact.html" class="cta-button">GET OFFER</a>
         </div>
     </div>
 
