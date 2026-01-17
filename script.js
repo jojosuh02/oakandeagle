@@ -72,45 +72,68 @@ setupHamburgerMenu();
 
 // Smooth scroll behavior and fade effects
 document.addEventListener('DOMContentLoaded', function() {
-    // Prevent initial scroll bounce on mobile
-    if (window.innerWidth <= 768) {
+    // Prevent initial scroll bounce on mobile - Services page specific
+    if (window.innerWidth <= 768 && window.location.pathname.includes('services.html')) {
         // Disable smooth scroll on mobile to prevent bounce
         document.documentElement.style.scrollBehavior = 'auto';
         document.body.style.scrollBehavior = 'auto';
         
-        // Ensure page doesn't try to scroll to top on load
-        if (window.location.pathname.includes('services.html')) {
-            // Prevent any initial scroll reset
-            const savedScroll = sessionStorage.getItem('servicesScroll');
-            if (savedScroll) {
-                window.scrollTo(0, parseInt(savedScroll));
-            }
-            
-            // Save scroll position before unload
-            window.addEventListener('beforeunload', function() {
-                sessionStorage.setItem('servicesScroll', window.pageYOffset || document.documentElement.scrollTop);
-            });
+        // Prevent browser from restoring scroll position automatically
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
         }
         
-        // Prevent scroll bounce on first touch
-        let firstScroll = true;
-        let lastKnownScroll = window.pageYOffset || document.documentElement.scrollTop;
+        // Ensure page starts at top and doesn't try to restore position
+        window.scrollTo(0, 0);
         
-        window.addEventListener('touchmove', function() {
-            if (firstScroll) {
-                firstScroll = false;
-                lastKnownScroll = window.pageYOffset || document.documentElement.scrollTop;
+        // Prevent any scroll during page load
+        let pageLoaded = false;
+        window.addEventListener('load', function() {
+            pageLoaded = true;
+            // Small delay to ensure everything is rendered
+            setTimeout(function() {
+                // Ensure we're still at top after load
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 10) {
+                    window.scrollTo(0, 0);
+                }
+            }, 100);
+        });
+        
+        // Track first scroll gesture
+        let firstScrollGesture = true;
+        let initialScrollPosition = 0;
+        
+        window.addEventListener('touchstart', function() {
+            if (firstScrollGesture && pageLoaded) {
+                initialScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
             }
         }, { passive: true });
         
-        // Monitor for unexpected scroll resets
+        // Monitor scroll during first gesture
         window.addEventListener('scroll', function() {
-            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            // If scroll jumps back unexpectedly (more than 100px), it's likely a bounce
-            if (currentScroll < lastKnownScroll - 100 && lastKnownScroll > 100 && !firstScroll) {
-                // Allow it but log for debugging - don't interfere with natural bounce
+            if (firstScrollGesture && pageLoaded) {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                // If scroll tries to reset to top unexpectedly during first scroll
+                if (currentScroll < initialScrollPosition - 20 && initialScrollPosition > 0) {
+                    // Restore scroll position
+                    requestAnimationFrame(function() {
+                        window.scrollTo(0, initialScrollPosition);
+                    });
+                } else if (currentScroll > initialScrollPosition + 20) {
+                    // User is scrolling down successfully, unlock
+                    firstScrollGesture = false;
+                }
             }
-            lastKnownScroll = currentScroll;
+        }, { passive: true });
+        
+        // Release after first successful scroll
+        window.addEventListener('touchend', function() {
+            if (firstScrollGesture) {
+                setTimeout(function() {
+                    firstScrollGesture = false;
+                }, 300);
+            }
         }, { passive: true });
     }
     

@@ -507,15 +507,24 @@ body {
     /* Services page specific scroll fix */
     .services-page {
         overflow-x: hidden !important;
-        overflow-y: visible !important;
-        -webkit-overflow-scrolling: touch !important;
         position: relative !important;
         height: auto !important;
         min-height: 100vh;
         touch-action: pan-y !important;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
-        will-change: scroll-position;
+    }
+    
+    /* Prevent layout shift on services page load */
+    .services-page {
+        contain: layout style paint;
+    }
+    
+    /* Ensure fixed header doesn't cause scroll jump */
+    .fixed-header {
+        will-change: transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
     
     /* Prevent any fixed elements from blocking scroll */
@@ -1895,8 +1904,6 @@ html {
     /* Fix scrolling issues on mobile - Services page */
     .services-page {
         overflow-x: hidden !important;
-        overflow-y: visible !important;
-        -webkit-overflow-scrolling: touch !important;
         height: auto !important;
         min-height: 100vh;
         touch-action: pan-y !important;
