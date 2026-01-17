@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
             autoScrollInterval = setInterval(() => {
                 currentSlide = (currentSlide + 1) % totalSlides; // Loop through slides
                 goToSlideVertical(currentSlide);
-            }, 3000); // Change slide every 3 seconds
+            }, 2000); // Change slide every 2 seconds
         }
         
         // Start auto-scroll
