@@ -280,46 +280,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Vertical carousel for "What We Do" section
+    // Vertical carousel for "What We Do" section - Auto-scroll
     const whatWeDoCarousel = document.getElementById('whatWeDoCarousel');
     const whatWeDoTrack = document.getElementById('whatWeDoTrack');
-    const arrowUp = document.getElementById('carouselArrowUp');
-    const arrowDown = document.getElementById('carouselArrowDown');
     
-    if (whatWeDoCarousel && whatWeDoTrack && arrowUp && arrowDown) {
+    if (whatWeDoCarousel && whatWeDoTrack) {
         let currentSlide = 0;
         const slides = whatWeDoTrack.querySelectorAll('.carousel-slide-vertical');
         const totalSlides = slides.length;
+        let autoScrollInterval;
         
         // Function to move to specific slide
         function goToSlideVertical(index) {
-            if (index < 0) index = 0;
-            if (index >= totalSlides) index = totalSlides - 1;
+            if (index < 0) index = totalSlides - 1; // Loop to last slide
+            if (index >= totalSlides) index = 0; // Loop to first slide
             
             currentSlide = index;
             whatWeDoTrack.style.transform = `translateY(-${currentSlide * 500}px)`;
-            
-            // Update arrow states
-            arrowUp.disabled = currentSlide === 0;
-            arrowDown.disabled = currentSlide === totalSlides - 1;
         }
         
-        // Arrow button handlers
-        arrowUp.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                goToSlideVertical(currentSlide - 1);
-            }
-        });
+        // Auto-scroll function
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides; // Loop through slides
+                goToSlideVertical(currentSlide);
+            }, 3000); // Change slide every 3 seconds
+        }
         
-        arrowDown.addEventListener('click', () => {
-            if (currentSlide < totalSlides - 1) {
-                goToSlideVertical(currentSlide + 1);
-            }
-        });
-        
-        // Initialize arrow states
-        arrowUp.disabled = currentSlide === 0;
-        arrowDown.disabled = currentSlide === totalSlides - 1;
+        // Start auto-scroll
+        if (totalSlides > 1) {
+            startAutoScroll();
+            
+            // Pause auto-scroll on hover (optional - for better UX)
+            whatWeDoCarousel.addEventListener('mouseenter', () => {
+                clearInterval(autoScrollInterval);
+            });
+            
+            whatWeDoCarousel.addEventListener('mouseleave', () => {
+                startAutoScroll();
+            });
+        }
     }
     
     // Fade-in animation for sections on scroll (services page)
