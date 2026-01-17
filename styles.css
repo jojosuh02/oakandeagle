@@ -515,11 +515,6 @@ body {
         transform: translateZ(0);
     }
     
-    /* Prevent layout shift on services page load */
-    .services-page {
-        contain: layout style paint;
-    }
-    
     /* Ensure fixed header doesn't cause scroll jump */
     .fixed-header {
         will-change: transform;
@@ -578,11 +573,21 @@ body {
         touch-action: pan-y;
     }
     
-    /* Ensure body can receive scroll events */
+    /* Ensure body can receive scroll events - critical for first scroll */
     body {
         -webkit-overflow-scrolling: touch !important;
         overflow-y: scroll !important;
         overflow-x: hidden !important;
+        touch-action: pan-y !important;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Ensure html can also receive scroll events */
+    html {
+        -webkit-overflow-scrolling: touch !important;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+        touch-action: pan-y !important;
     }
     
     /* Make sure services hero sections don't block scroll */
@@ -1914,15 +1919,16 @@ html {
     
     body {
         overflow-x: hidden !important;
-        overflow-y: auto !important;
+        overflow-y: scroll !important;
         -webkit-overflow-scrolling: touch !important;
         position: relative !important;
         touch-action: pan-y !important;
+        -webkit-tap-highlight-color: transparent;
     }
     
     html {
         overflow-x: hidden !important;
-        overflow-y: auto !important;
+        overflow-y: scroll !important;
         -webkit-overflow-scrolling: touch !important;
         touch-action: pan-y !important;
     }

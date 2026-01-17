@@ -72,69 +72,31 @@ setupHamburgerMenu();
 
 // Smooth scroll behavior and fade effects
 document.addEventListener('DOMContentLoaded', function() {
-    // Prevent initial scroll bounce on mobile - Services page specific
-    if (window.innerWidth <= 768 && window.location.pathname.includes('services.html')) {
+    // Services page mobile scroll fix - simplified
+    const isServicesPage = window.location.pathname.includes('services.html') || 
+                           window.location.href.includes('services.html') ||
+                           document.querySelector('.services-page');
+    
+    if (isServicesPage) {
         // Disable smooth scroll on mobile to prevent bounce
-        document.documentElement.style.scrollBehavior = 'auto';
-        document.body.style.scrollBehavior = 'auto';
+        if (window.innerWidth <= 768) {
+            document.documentElement.style.scrollBehavior = 'auto';
+            document.body.style.scrollBehavior = 'auto';
+        }
         
-        // Prevent browser from restoring scroll position automatically
+        // Prevent browser from restoring scroll position automatically (but allow normal scrolling)
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
         
-        // Ensure page starts at top and doesn't try to restore position
-        window.scrollTo(0, 0);
-        
-        // Prevent any scroll during page load
-        let pageLoaded = false;
-        window.addEventListener('load', function() {
-            pageLoaded = true;
-            // Small delay to ensure everything is rendered
-            setTimeout(function() {
-                // Ensure we're still at top after load
-                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                if (currentScroll > 10) {
-                    window.scrollTo(0, 0);
-                }
-            }, 100);
+        // Ensure page is ready for scrolling - don't interfere with user gestures
+        // Only set initial position if page is truly at top and hasn't been scrolled yet
+        requestAnimationFrame(function() {
+            if (window.pageYOffset === 0 && document.documentElement.scrollTop === 0) {
+                // Ensure we start at top, but don't prevent subsequent scrolling
+                window.scrollTo(0, 0);
+            }
         });
-        
-        // Track first scroll gesture
-        let firstScrollGesture = true;
-        let initialScrollPosition = 0;
-        
-        window.addEventListener('touchstart', function() {
-            if (firstScrollGesture && pageLoaded) {
-                initialScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            }
-        }, { passive: true });
-        
-        // Monitor scroll during first gesture
-        window.addEventListener('scroll', function() {
-            if (firstScrollGesture && pageLoaded) {
-                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                // If scroll tries to reset to top unexpectedly during first scroll
-                if (currentScroll < initialScrollPosition - 20 && initialScrollPosition > 0) {
-                    // Restore scroll position
-                    requestAnimationFrame(function() {
-                        window.scrollTo(0, initialScrollPosition);
-                    });
-                } else if (currentScroll > initialScrollPosition + 20) {
-                    // User is scrolling down successfully, unlock
-                    firstScrollGesture = false;
-                }
-            }
-        }, { passive: true });
-        
-        // Release after first successful scroll
-        window.addEventListener('touchend', function() {
-            if (firstScrollGesture) {
-                setTimeout(function() {
-                    firstScrollGesture = false;
-                }, 300);
-            }
-        }, { passive: true });
     }
     
     // Logo link - navigate to homepage or scroll to top if already on homepage
